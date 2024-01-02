@@ -1,0 +1,19 @@
+﻿@model TraineeShowTraineeResultModel
+
+<h3>@Model.TraineeName            @Model.DepartmentName</h3>
+
+<table class="table table-bordered table-hover">
+   <tr>
+      <th>Course Name</th>
+      <th>Degree</th>
+   </tr>
+   @for (int i = 0; i < Model.CourseName.Count; i++)
+   {
+      <tr style="color:@Model.Color[i]">
+
+         <td>@Model.CourseName[i]</td>
+         <td>@Model.Degree[i]</td>
+      </tr>
+   }
+
+</table>

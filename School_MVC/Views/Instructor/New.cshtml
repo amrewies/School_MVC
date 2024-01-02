@@ -1,0 +1,65 @@
+﻿@model Instructor
+
+@{
+   SelectList DepartmentOptions = new SelectList(ViewBag.Departments, "Id", "Name");
+}
+
+
+<form method="post">
+
+  <div>
+    <label asp-for="@Model.Name"></label>
+      <input asp-for="@Model.Name" type="text" class="form-control" />
+  </div>
+
+   <div>
+      <label asp-for="@Model.Salary"></label>
+      <input asp-for="@Model.Salary" type="text" class="form-control" />
+   </div>
+
+   <div>
+      <label asp-for="@Model.Addrss"></label>
+      <input asp-for="@Model.Addrss" type="text" class="form-control" />
+   </div>
+
+   <div>
+      <label asp-for="@Model.Image"></label>
+      <input asp-for="@Model.Image" type="text" class="form-control" />
+   </div>
+
+   <div>
+      <select asp-for="@Model.DepartmentId" asp-items="DepartmentOptions" onchange="ShowCourses()" class="form-control"></select>
+   </div>
+
+   <div>
+      <select asp-for="@Model.CourseId" class="form-control"></select>
+   </div>
+
+   <div>
+      <input id="Submit" type="submit" value="Create" class="btn btn-secondary" />
+   </div>
+
+</form>
+
+<a asp-action="Index" class="btn btn-secondary">Back</a>
+
+@section Scripts{
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script>
+     function ShowCourses() 
+     {
+         var DepartmentId = document.getElementById("DepartmentId").value;
+         $.ajax({
+            url: "/Instructor/NewAjax?DepartmentId=" + DepartmentId,
+            success: function (result) {
+               document.getElementById("CourseId").innerHTML = "";
+               for (var item of result)
+               {
+                  document.getElementById("CourseId").innerHTML += "<option value=" + item.id + ">" + item.name + " </option>";
+               }
+            }
+         });
+     }
+      
+  </script>
+}

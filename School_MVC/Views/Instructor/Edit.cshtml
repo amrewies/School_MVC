@@ -1,0 +1,45 @@
+﻿@model Instructor
+
+@{
+   SelectList DepartmentOptions = new SelectList(ViewBag.Departments, "Id", "Name");
+   SelectList CourseOptions = new SelectList(ViewBag.Courses, "Id", "Name");
+}
+
+
+<form method="post">
+
+   <div>
+      <label asp-for="@Model.Name"></label>
+      <input asp-for="@Model.Name" type="text" class="form-control" />
+   </div>
+
+   <div>
+      <label asp-for="@Model.Salary"></label>
+      <input asp-for="@Model.Salary" type="text" class="form-control" />
+   </div>
+
+   <div>
+      <label asp-for="@Model.Addrss"></label>
+      <input asp-for="@Model.Addrss" type="text" class="form-control" />
+   </div>
+
+   <div>
+      <label asp-for="@Model.Image"></label>
+      <input asp-for="@Model.Image" type="text" class="form-control" />
+   </div>
+
+   <div>
+      <select asp-for="@Model.DepartmentId" asp-items="DepartmentOptions" class="form-control"></select>
+   </div>
+
+   <div>
+      <select asp-for="@Model.CourseId" asp-items="CourseOptions" class="form-control"></select>
+   </div>
+
+   <div>
+      <input id="Submit" type="submit" value="Edit" class="btn btn-secondary" />
+   </div>
+
+</form>
+
+<a asp-action="Index" class="btn btn-secondary">Back</a>

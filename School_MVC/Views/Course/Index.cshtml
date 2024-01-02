@@ -1,0 +1,35 @@
+﻿@model List<Course>
+
+@{
+   Layout = "_AdvantageLayout";
+}
+
+<table class="table table-bordered table-hover">
+   <tr>
+      <th>Name</th>
+      <th>Degree</th>
+      <th>MinDegree</th>
+      <th>Department</th>
+      <th>Details</th>
+      <th>Edit</th>
+      <th>Delete</th>
+   </tr>
+   @foreach (var item in Model)
+   {
+
+      <tr>
+         <td>@item.Name</td>
+         <td>@item.Degree</td>
+         <td>@item.MinDegree</td>
+         <td>@item.Department?.Name</td>
+
+
+         <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a></td>
+         <td><a asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-success">Edit</a></td>
+         <td><a asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-success">Delete</a></td>
+      </tr>
+
+   }
+</table>
+
+<a asp-action="New" class="btn btn-success">New</a>

@@ -1,0 +1,56 @@
+﻿@model List<Instructor>
+
+<div id="DisplayAjax"></div>
+
+<table class="table table-bordered table-hover">
+   <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Salary</th>
+      <th>Addrss</th>
+      <th>Image</th>
+      <th>DepartmentName</th>
+      <th>CourseName</th>
+      <th>Details</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>DetailsAjax</th>
+   </tr>
+   @foreach (var item in Model)
+   {
+      <tr>
+         <td>@item.Id</td>
+         <td>@item.Name</td>
+         <td>@item.Salary</td>
+         <td>@item.Addrss</td>
+         <td>@item.Image</td>
+         
+         <td>@item.Department?.Name</td>
+         <td>@item.Course?.Name</td>
+         
+
+         <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a></td>
+         <td><a asp-action="Edit" asp-route-InstrucotrId="@item.Id" class="btn btn-success">Edit</a></td>
+         <td><a asp-action="Delete" asp-route-InstrucotrId="@item.Id" class="btn btn-success">Delete</a></td>
+         <td><a class="btn btn-success" onclick="DetailsAjax(@item.Id)">DetailsAjax</a></td>
+      </tr>
+
+   }
+</table>
+
+<a asp-action="New" class="btn btn-success">New</a>
+
+@section Scripts{
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script>
+     function DetailsAjax(InstructorId) {
+         $.ajax({
+            url: "/Instructor/DetailsAjax/" + InstructorId,
+            success: function (result) {
+
+               $("#DisplayAjax").html(result);
+            }
+         });
+     }
+  </script>
+}

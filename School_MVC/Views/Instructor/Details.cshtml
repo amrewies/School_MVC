@@ -1,0 +1,12 @@
+﻿@model Instructor
+
+@if(@Model!=null)
+{
+   
+  @Model.Name
+  @Model.Salary
+  @Model.Addrss
+  @Model.Image
+  @Model.Department?.Name
+  @Model.Course?.Name
+}

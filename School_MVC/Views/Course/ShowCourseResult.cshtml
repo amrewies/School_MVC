@@ -1,0 +1,34 @@
+﻿@model CourseShowCourseResultModel
+
+<h3>@Model.CourseName   @Model.DepartmentName</h3>
+
+<table class="table table-bordered table-hover">
+   <tr>
+      <th>Student Name</th>
+      <th>Degree</th>
+   </tr>
+   @for (int i = 0; i < Model.TraineeName.Count; i++)
+   {
+      <tr style="color:@Model.Color[i]">
+
+         <td>@Model.TraineeName[i]</td>
+         <td>@Model.Degree[i]</td>
+      </tr>
+   }
+</table>
+
+<table class="table table-bordered table-hover">
+   <tr>
+      <th>Instructor Name</th>
+      <th>Address</th>
+   </tr>
+   @foreach (var Instructor in Model.Instructors)
+   {
+      <tr>
+
+         <td>@Instructor.Name</td>
+         <td>@Instructor.Addrss</td>
+      </tr>
+   }
+</table>
+
